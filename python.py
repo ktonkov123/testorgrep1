@@ -18,17 +18,7 @@ def get_upm_token(email: str = default_jira_user_email(), jira_site: str = defau
     return res.headers['upm-token']
 
 
-def install_app(email: str = default_jira_user_email(), jira_site: str = default_jira_site(),
-                descriptor_url: str = default_descriptor()) -> str:
-    res: Response = requests.post(jira_site + PATH,
-                                  params={'os_authType': 'basic',
-                                          'token': get_upm_token(email, jira_site)},
-                                  headers={'Authorization': auth.basic(email),
-                                           'Accept': 'application/json',
-                                           'Content-Type': 'application/vnd.atl.plugins.remote.install+json'},
-                                  json={'pluginUri': descriptor_url})
-    return res.reason
 
 
 if __name__ == '__main__':
-    print(install_app())
+    print(get_upm_token())
